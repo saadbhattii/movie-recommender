@@ -1,7 +1,7 @@
 # Movie Recommender System
 
 A content-based movie recommendation system built with Python, Pandas, and FastAPI.  
-This project allows you to input a movie title and get similar movies based on tags including overview, genres, cast, director, and keywords.
+Input a movie title and get similar movie recommendations based on tags including overview, genres, cast, director, and keywords.
 
 ---
 
@@ -10,8 +10,8 @@ This project allows you to input a movie title and get similar movies based on t
 ```
 movie-recommender/
  ├─ data/
- │   ├─ raw/               # Original CSV datasets
- │   └─ processed/         # Cleaned & processed data
+ │   ├─ raw/               # Original CSV datasets (not included in repo)
+ │   └─ processed/         # Cleaned & processed data (generated locally)
  ├─ models/                # Saved similarity matrix and indices
  ├─ src/
  │   ├─ api/
@@ -21,9 +21,20 @@ movie-recommender/
  │   └─ models/
  │       └─ build_similarity.py # Vectorization & similarity computation
  ├─ venv/                  # Python virtual environment
- ├─ README.md
- └─ requirements.txt
+ └─ README.md
+```
 
+---
+
+## Dataset
+
+This project uses the [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata) from Kaggle.  
+
+After downloading, place the files here:
+
+```
+data/raw/tmdb_5000_movies.csv
+data/raw/tmdb_5000_credits.csv
 ```
 
 ---
@@ -51,8 +62,8 @@ source venv/bin/activate
 
 ```bash
 pip install -r requirements.txt
-# If requirements.txt not present, install manually:
-pip install pandas scikit-learn fastapi uvicorn
+# Or manually:
+pip install pandas scikit-learn nltk fastapi uvicorn
 ```
 
 ---
@@ -126,3 +137,12 @@ uvicorn src.api.main:app --reload
 ```
 
 ---
+
+## Notes
+
+- Content-based recommendations rely on movie features only; no user data is used  
+- Refinements like **TF-IDF weighting** or **genre filtering** can improve recommendation relevance  
+- Entire system runs locally; no external API required  
+
+---
+
